@@ -35,7 +35,6 @@
                     @endauth
                 </div>
             @endif
-
-                <livewire:counter />
+    aaa
     </body>
 </html>
