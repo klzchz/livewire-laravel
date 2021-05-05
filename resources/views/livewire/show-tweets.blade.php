@@ -12,12 +12,13 @@
     </form>
     <hr>
     @foreach($tweets as $tweet)
-            {{$tweet->user->name}} - {{$tweet->content}}
+            <p>{{$tweet->user->name}} - {{$tweet->content}}
         @if($tweet->likes->count())
-            <a href="" class="">Descurtir</a>
+            <a href=""  class="" wire:click.prevent="unlike({{$tweet}})">Descurtir</a>
         @else
-            <a href="" class="">Curtir</a>
+            <a href="" wire:click.prevent="like({{$tweet->id}})" class="">Curtir</a>
         @endif
+            </p>
     @endforeach
     <hr>
     {{$tweets->links()}}

@@ -10,13 +10,14 @@ class ShowTweets extends Component
 {
     use WithPagination;
     public  $content = 'Apenas um teste';
+
     //Validação Livewire
     protected  $rules = [
         'content'=>'required|min:3|max:255'
     ];
     public function render()
     {
-        $tweets =  Tweet::with(['user'])->paginate(2);
+        $tweets =  Tweet::with(['user'])->paginate(5);
 
         return view('livewire.show-tweets',compact('tweets'));
     }
@@ -31,5 +32,19 @@ class ShowTweets extends Component
 
         $this->content = '';
     }
+    public function  like($idTweet)
+    {
+        $tweet = Tweet::find($idTweet);
+
+        $tweet->likes()->create([
+                'user_id'=>auth()->user()->id
+        ]);
+    }
+
+    public function unlike(Tweet  $tweet)
+    {
+        $tweet->likes()->delete();
+    }
+
 
 }
