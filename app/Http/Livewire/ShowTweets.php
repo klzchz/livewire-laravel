@@ -25,12 +25,11 @@ class ShowTweets extends Component
         //Validação Livewire
         $this->validate();
 
-        $data = [
+        auth()->user()->tweets()->create([
             'content'=>$this->content,
-            'user_id'=>rand(1,10)
-        ];
-        Tweet::create($data);
-        return response()->json('created Succesfully',201);
+        ]);
+
+        $this->content = '';
     }
 
 }
