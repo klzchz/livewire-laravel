@@ -7,7 +7,7 @@ use \App\Http\Livewire\{
 };
 
 
-Route::get('/upload',UploadPhoto::class)->name('upload.photo.user');
+Route::get('/upload',UploadPhoto::class)->name('upload.photo.user')->middleware('auth');
 Route::get('/tweets',ShowTweets::class)->name('tweets.index')->middleware(['auth:sanctum']);
 
 Route::get('/', function () {
